@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دعوة زفاف رقمية فاخرة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cairo:wght@300;400;700&family=Reem+Kufi:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --baby-yellow: #FFFDF3;
+            --gold: #D4AF37;
+            --dark-gold: #AA7C11;
+            --white: #FFFFFF;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #F4F6F6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .phone-container {
+            width: 100%;
+            max-width: 450px;
+            height: 100vh;
+            position: relative;
+            background-color: var(--white);
+            box-shadow: 0 0 30px rgba(0,0,0,0.15);
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        /* ✉️ واجهة المغلف الفخم */
+        .envelope-wrapper {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #FDFEFE;
+            background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop'); /* خلفية ملمس رخامي ناعم للمغلف */
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+        }
+
+        .envelope-wrapper.hide {
+            transform: translateY(-100vh);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* شكل الرسالة الورقية الفخمة */
+        .envelope-card {
+            width: 85%;
+            background: var(--white);
+            padding: 30px 20px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 1px solid rgba(212,175,55,0.3);
+            text-align: center;
+            position: relative;
+        }
+
+        /* ختم لؤلؤي ذهبي */
+        .wax-seal {
+            width: 90px;
+            height: 90px;
+            background: radial-gradient(circle, #FFF 0%, #E5E7E9 100%);
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1), inset 0 0 15px rgba(255,255,255,0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Alex Brush', cursive;
+            font-size: 28px;
+            color: var(--dark-gold);
+            cursor: pointer;
+        }
+
+        .click-to-open {
+            font-size: 16px;
+            color: var(--dark-gold);
+            font-family: 'Reem Kufi', sans-serif;
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite;
+            cursor: pointer;
+        }
+
+        .quote-container {
+            min-height: 50px;
+            padding: 0 10px;
+        }
+
+        .text-quote {
+            font-size: 15px;
+            color: #566573;
+            font-style: italic;
+            line-height: 1.6;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* 📜 المحتوى الداخلي للدعوة */
+        .main-content {
+            background-color: var(--baby-yellow);
+            min-height: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        /* إطار علوي من ورود النرجس والياسمين الحقيقية */
+        .top-flower-banner {
+            width: 100%;
+            height: 160px;
+            background-image: url('https://images.unsplash.com/photo-1550950158-d0d960dff51b?q=80&w=600&auto=format&fit=crop'); /* ورود طبيعية بيضاء وصفراء لطيفة */
+            background-size: cover;
+            background-position: center;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .names-section {
+            padding: 30px 20px 10px 20px;
+        }
+
+        .names-title {
+            font-family: 'Alex Brush', cursive;
+            font-size: 42px;
+            color: var(--dark-gold);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .date-title {
+            font-size: 16px;
+            color: #7F8C8D;
+            margin-top: 5px;
+            letter-spacing: 3px;
+        }
+
+        .invitation-text-box {
+            padding: 30px 20px;
+            color: #4D5656;
+            line-height: 2.2;
+            font-size: 16px;
+        }
+
+        .invitation-text-box h3 {
+            font-family: 'Reem Kufi', sans-serif;
+            color: var(--dark-gold);
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+
+        /* ⛲ قسم الحديقة، النافورة والطيور المحدث بالكامل */
+        .garden-illustration {
+            width: 90%;
+            margin: 20px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(212,175,55,0.3);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        /* صورة حديقة ونافورة فخمة متناسقة مع الثيم */
+        .garden-img {
+            width: 100%;
+            display: block;
+        }
+
+        /* طيور حية تطير فوق الحديقة */
+        .birds-overlay {
+            position: absolute;
+            top: 10%;
+            width: 100%;
+            height: 40px;
+            pointer-events: none;
+        }
+        .bird { position: absolute; font-size: 20px; animation: fly 5s infinite linear; opacity: 0; }
+        .b1 { left: 15%; animation-delay: 0s; }
+        .b2 { left: 45%; animation-delay: 2s; }
+        .b3 { left: 75%; animation-delay: 1s; }
+
+        /* 📍 زر الموقع الخرائط الأنيق */
+        .location-box { margin: 30px 0; }
+        .location-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--white) 0%, #FEF9E7 100%);
+            color: var(--dark-gold);
+            border: 2px solid var(--gold);
+            padding: 14px 40px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(212,175,55,0.15);
+            transition: all 0.3s;
+        }
+
+        /* ⏳ العداد التنازلي العصري بلمسات اللؤلؤ */
+        .countdown-section {
+            background: var(--white);
+            width: 90%;
+            margin: 30px auto;
+            padding: 25px 15px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            border: 1px solid rgba(212,175,55,0.2);
+        }
+        .countdown-section h4 {
+            font-family: 'Reem Kufi', sans-serif;
+            color: var(--dark-gold);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        .countdown-timer { display: flex; justify-content: center; gap: 15px; direction: ltr; }
+        .time-block {
+            background: radial-gradient(circle, #FFFFFF 0%, #F9F9F9 100%);
+            padding: 12px;
+            border-radius: 10px;
+            min-width: 70px;
+            border: 1px solid rgba(212,175,55,0.15);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.02);
+        }
+        .time-number { font-size: 22px; font-weight: bold; color: var(--dark-gold); display: block; }
+        .time-label { font-size: 12px; color: #7F8C8D; }
+
+        /* 💭 كلمات من القلب والختام الوردي اللطيف */
+        .footer-section {
+            padding: 40px 20px;
+            background-image: url('https://images.unsplash.com/photo-1550950158-d0d960dff51b?q=80&w=600&auto=format&fit=crop');
+            background-position: bottom;
+            color: #4D5656;
+            border-top: 2px solid var(--gold);
+        }
+        .footer-card {
+            background: rgba(255, 255, 255, 0.92);
+            padding: 30px 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(212,175,55,0.2);
+        }
+        .footer-card h4 { color: var(--dark-gold); font-size: 22px; margin-bottom: 15px; font-family: 'Reem Kufi', sans-serif; }
+        .footer-text-lines { font-size: 15px; line-height: 2.4; }
+
+        /* زينة لؤلؤة دائرية للتحكم بالأسفل */
+        .pearl-btn {
+            position: fixed; bottom: 20px; right: calc(50% - 200px);
+            width: 45px; height: 45px;
+            background: radial-gradient(circle, #FFFFFF 0%, #E5E7E9 100%);
+            border: 1px solid var(--gold); border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 90; cursor: pointer;
+        }
+        @media (max-width: 450px) { .pearl-btn { right: 20px; } }
+
+        /* الحركات */
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.04); } 100% { transform: scale(1); } }
+        @keyframes fly {
+            0% { transform: translateY(20px) translateX(-20px) scale(0.8); opacity: 0; }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.8; }
+            100% { transform: translateY(-20px) translateX(20px) scale(1.1); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-container">
+        
+        <div class="envelope-wrapper" id="envelopeWrapper">
+            <div class="envelope-card">
+                <div class="wax-seal" onclick="openInvitation()">H&S</div>
+                <div class="click-to-open" onclick="openInvitation()">اضغط لفتح الرسالة ✨</div>
+                <div class="quote-container">
+                    <p class="text-quote" id="quoteText">The beginning of a beautiful forever ❤️✨</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            
+            <div class="top-flower-banner"></div>
+
+            <div class="names-section">
+                <div class="names-title">Hisham & Sabreen</div>
+                <div class="date-title">2026.06.06</div>
+            </div>
+
+            <div class="invitation-text-box">
+                <h3>الموقع</h3>
+                <p style="color: #E74C3C; font-weight: bold;">(سيتم إضافة اسم القاعة والموقع لاحقاً)</p>
+                <p>الساعة ٦ مساءً</p>
+                <br>
+                <p>بكل ما تحمله مشاعرنا من حبّ، نتشرف بدعوتكم</p>
+                <p>لحضور حفل عقد قراننا</p>
+                <p>سائلين الله أن يكون هذا العهد عهداً تُكتب فيه السعادة،</p>
+                <p>ومودّة تدوم، وسكينة تسكن القلوب.</p>
+            </div>
+
+            <div class="garden-illustration">
+                <div class="birds-overlay">
+                    <div class="bird b1">🕊️</div>
+                    <div class="bird b2">🕊️</div>
+                    <div class="bird b3">🕊️</div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=600&auto=format&fit=crop" class="garden-img" alt="Garden">
+            </div>
+
+            <div class="location-box">
+                <a href="#" class="location-btn" onclick="alert('سيتم إضافة الرابط الحقيقي للخريطة لاحقاً!')">الذهاب إلى الموقع 📍</a>
+            </div>
+
+            <div class="countdown-section">
+                <h4>يبدأ الاحتفال خلال</h4>
+                <div class="countdown-timer" id="timer">
+                    <div class="time-block"><span class="time-number" id="days">00</span><span class="time-label">أيام</span></div>
+                    <div class="time-block"><span class="time-number" id="hours">00</span><span class="time-label">ساعات</span></div>
+                    <div class="time-block"><span class="time-number" id="minutes">00</span><span class="time-label">دقائق</span></div>
+                    <div class="time-block"><span class="time-number" id="seconds">00</span><span class="time-label">ثواني</span></div>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <div class="footer-card">
+                    <h4>كلمات من القلب</h4>
+                    <div class="footer-text-lines">
+                        <p>بحضوركم تكتمل أفراحنا</p>
+                        <p>بدعائكم تدوم سعادتنا</p>
+                        <p>بمحبتكم يزهو يومنا</p>
+                        <p>بمشاركتكم تبقى الذكرى</p>
+                        <br>
+                        <p style="font-size: 12px; color: #95A5A6;">جنة الأطفال منازلهم 🤍</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="pearl-btn" onclick="alert('تم تفعيل ميزة اللؤلؤ الفاخرة ✨')">✨</div>
+
+    </div>
+
+    <script>
+        // مصفوفة العبارات الـ 18 المتغيرة
+        const quotes = [
+            "A lifetime with you sounds beautiful.",
+            "You are my today and all my tomorrows.",
+            "Forever looks beautiful on us.",
+            "Every moment led me to you.",
+            "You feel like home to my heart.",
+            "Our souls were always meant to meet.",
+            "With you, forever feels easy.",
+            "This love was written by destiny.",
+            "In your love, I found my forever.",
+            "Some love stories last forever.",
+            "You are the calm my heart searched for.",
+            "And suddenly, life became more beautiful.",
+            "I found the love my heart was waiting for.",
+            "Together is where we belong.",
+            "You are my favorite chapter.",
+            "From now until forever, it’s you and me.",
+            "Love brought us here, forever keeps us together.",
+            "The beginning of a beautiful forever ❤️✨"
+        ];
+
+        let quoteIndex = 0;
+        const quoteElement = document.getElementById('quoteText');
+
+        setInterval(() => {
+            quoteIndex = (quoteIndex + 1) % quotes.length;
+            quoteElement.style.opacity = 0;
+            setTimeout(() => {
+                quoteElement.innerText = quotes[quoteIndex];
+                quoteElement.style.opacity = 1;
+            }, 300);
+        }, 3000);
+
+        function openInvitation() {
+            document.getElementById('envelopeWrapper').classList.add('hide');
+        }
+
+        // حساب العداد التنازلي لتاريخ ليلة العمر 2026.6.6 الساعة 6 مساءً
+        const targetDate = new Date("June 6, 2026 18:00:00").getTime();
+
+        const countdownInterval = setInterval(() => {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            if (difference < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("timer").innerHTML = "<p style='color:var(--dark-gold); font-weight:bold;'>بدأت حكايتنا الجميلة ومرحباً بكم! ❤️</p>";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
